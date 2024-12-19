@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<h1>Тестування з теми "Арифметика"</h1>
+<form id="testForm">
+<label>1. Обрахуйте значення виразу 5 + 7</label>
+<select id="question1">
+<option value="-1">Оберіть правильну відповідь</option>
+<option value="10">10</option>
+<option value="12">12</option>
+<option value="20">20</option>
+</select>
+<br>
+<label style="font-size: 20px;">2. Знайдіть просте число</label>
+<select id="question2">
+<option value="-1">Оберіть правильну відповідь</option>
+<option value="12">12</option>
+<option value="7">7</option>
+<option value="8">8</option>
+</select>
+<br>
+<label style="font-size: 20px;">3. Обрахуйте значення виразу 5 * 3</label>
+<select id="question3">
+<option value="-1">Оберіть правильну відповідь</option>
+<option value="15">15</option>
+<option value="11">11</option>
+<option value="22">22</option>
+</select>
+<br>
+<label style="font-size: 20px;">4. Обрахуй значення виразу 19 9: </label>
+<input type="number" id="question4" placeholder="Введіть результат обрахунків">
+<br>
+<label style="font-size: 20px;">5. Обрахуй значення виразу 24 / 12: </label> <input type="number" id="question5" placeholder="Введіть результат обрахунків">
+<br>
+<label style="font-size: 20px;">6. Обрахуй значення виразу 16+ 4: </label>
+<input type="number" id="question6" placeholder="Введіть результат обрахунків">
+<button type="button" onclick="checkAnswers()">Перевірити себе</button>
+</form>
+<div id="results"></div>
+<script>
+function checkAnswers() {
+let correctAnswers = { 
+questionl: "12",
+question2: "7", 
+question3: "15",
+question4: "10",
+question5: "2",
+question6: "20",
+};
+let correctCount=0;
+let incorrectCount=0;
+let description="";
+for (let i=1; i <=6; i++) {
+const answer = document.getElementById(`question${i}`).value;
+if (answer== -1){
+ alert("Ви дали відповідь не всі запитання");
+return 0;
+}
+if (answer == correctAnswers[`question${i}`]) { 
+correctCount++;
+description+=` <b>Питання ${i}:</b> <em style = "color: green"> відповідь правильна. </em> <br>`;
+} else { incorrectCount++;
+description +=` <b>Питання ${i}:</b> <mark style= "color: red"> Ваша відповідь неправильна. </mark> Правильня відповідь: <b>${ 
+correctAnswers['question${i}']}</b>.<br>`;
+}
+}
+const resultText=` <b style= "color: green"> Правильних відповідей: </b> ${correctCount} <br> <b style="color: red">Неправильних
+відповідей:</b> ${incorrectCount}<br>`; 
+document.getElementById('results').innerHTML = resultText + description;
+}
+</script>
+</body>
+</html>
